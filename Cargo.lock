@@ -8,6 +8,7 @@ version = "0.1.0"
 dependencies = [
  "clap",
  "itertools",
+ "number-theory",
  "seq-macro",
 ]
 
@@ -132,6 +133,21 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2b192c782037fadd9cfa75548310488aabdbf3d2da73885b31bd0abd03351285"
 dependencies = [
  "either",
+]
+
+[[package]]
+name = "machine-prime"
+version = "1.5.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6dc82d8f07dbce4617251b99e6abd8b3c5758ac52fe74151fd0fb0b3c8945fee"
+
+[[package]]
+name = "number-theory"
+version = "0.0.25"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c82900cc558779e85d6b341c632cba58caf6846b4baa8d17f5fc74e70eefd38a"
+dependencies = [
+ "machine-prime",
 ]
 
 [[package]]

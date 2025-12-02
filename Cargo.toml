@@ -6,4 +6,5 @@ edition = "2024"
 [dependencies]
 clap = { version = "4.5.53", features = ["derive"] }
 itertools = "0.14.0"
+number-theory = "0.0.25"
 seq-macro = "0.3.6"
