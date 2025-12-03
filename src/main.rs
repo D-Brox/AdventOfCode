@@ -29,7 +29,7 @@ enum Part {
     Part2,
 }
 
-seq!( N in 01..=02 {
+seq!( N in 01..=03 {
     #[derive(Subcommand)]
     enum Commands {
         #(
@@ -45,7 +45,7 @@ seq!( N in 01..=02 {
 
 fn main() {
     let cli = Cli::parse();
-    seq!( N in 01..=02 {
+    seq!( N in 01..=03 {
         match &cli.command {
             #(
                 Commands::Day~N{part,input} => {
