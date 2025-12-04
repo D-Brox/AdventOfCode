@@ -1,5 +1,3 @@
-use std::{collections::HashSet, ops::Deref};
-
 use itertools::Itertools;
 
 fn find_idx_max(slice: &str) -> usize {
