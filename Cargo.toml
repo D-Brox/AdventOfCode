@@ -7,4 +7,5 @@ edition = "2024"
 clap = { version = "4.5.53", features = ["derive"] }
 itertools = "0.14.0"
 number-theory = "0.0.25"
+rangetools = "0.1.4"
 seq-macro = "0.3.6"
