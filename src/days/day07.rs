@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 
-pub fn solution1(input: Vec<String>) -> usize {
+pub fn part1(input: Vec<String>) -> usize {
     let mut splits = 0;
     let mut tachyons = HashSet::new();
     tachyons.insert(input[0].find('S').unwrap());
@@ -20,7 +20,7 @@ pub fn solution1(input: Vec<String>) -> usize {
     splits
 }
 
-pub fn solution2(input: Vec<String>) -> usize {
+pub fn part2(input: Vec<String>) -> usize {
     let mut tachyons = vec![0; input[0].len()];
     tachyons[input[0].find('S').unwrap()] = 1;
     for i in 1..input.len() {

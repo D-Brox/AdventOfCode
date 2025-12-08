@@ -1,6 +1,6 @@
 use itertools::Itertools;
 
-pub fn solution1(input: Vec<String>) -> u32 {
+pub fn part1(input: Vec<String>) -> u32 {
     let mut accesible = 0;
     let table = input
         .iter()
@@ -72,7 +72,7 @@ pub fn solution1(input: Vec<String>) -> u32 {
     accesible
 }
 
-pub fn solution2(input: Vec<String>) -> u32 {
+pub fn part2(input: Vec<String>) -> u32 {
     let mut accesible = 0;
     let mut table = input
         .iter()

@@ -5,7 +5,7 @@ fn parse_turn(line: &str) -> i32 {
     turn
 }
 
-pub fn solution1(input: Vec<String>) -> u32 {
+pub fn part1(input: Vec<String>) -> u32 {
     let mut dial = 50i32;
     let mut password = 0;
 
@@ -24,7 +24,7 @@ pub fn solution1(input: Vec<String>) -> u32 {
     password
 }
 
-pub fn solution2(input: Vec<String>) -> u32 {
+pub fn part2(input: Vec<String>) -> u32 {
     let mut dial = 50i32;
     let mut password = 0;
 

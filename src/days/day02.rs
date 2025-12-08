@@ -2,7 +2,7 @@ use itertools::Itertools;
 use number_theory::{Factorization, NumberTheory};
 use std::collections::HashSet;
 
-pub fn solution1(input: Vec<String>) -> u64 {
+pub fn part1(input: Vec<String>) -> u64 {
     let ranges = input[0]
         .split(',')
         .map(|r| r.split('-').collect_tuple::<(&str, &str)>().unwrap())
@@ -73,7 +73,7 @@ pub fn solution1(input: Vec<String>) -> u64 {
     sum
 }
 
-pub fn solution2(input: Vec<String>) -> u64 {
+pub fn part2(input: Vec<String>) -> u64 {
     let ranges = input[0]
         .split(',')
         .map(|r| r.split('-').collect_tuple::<(&str, &str)>().unwrap())

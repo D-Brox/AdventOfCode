@@ -12,7 +12,7 @@ fn find_idx_max(slice: &str) -> usize {
         .unwrap_or(0)
 }
 
-pub fn solution1(input: Vec<String>) -> u32 {
+pub fn part1(input: Vec<String>) -> u32 {
     let mut sum = 0;
     for line in input {
         let idx1 = find_idx_max(&line[..(line.len() - 1)]);
@@ -28,7 +28,7 @@ pub fn solution1(input: Vec<String>) -> u32 {
     sum
 }
 
-pub fn solution2(input: Vec<String>) -> u64 {
+pub fn part2(input: Vec<String>) -> u64 {
     let mut sum = 0;
     for line in input {
         let mut slice_filtered = line[0..12].to_string();

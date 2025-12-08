@@ -1,6 +1,6 @@
 use itertools::Itertools;
 
-pub fn solution1(mut input: Vec<String>) -> u64 {
+pub fn part1(mut input: Vec<String>) -> u64 {
     let ops = input.pop().unwrap();
     let ops = ops.split_whitespace().collect_vec();
     let inputs = input
@@ -24,7 +24,7 @@ pub fn solution1(mut input: Vec<String>) -> u64 {
     sum
 }
 
-pub fn solution2(mut input: Vec<String>) -> u64 {
+pub fn part2(mut input: Vec<String>) -> u64 {
     input.iter_mut().for_each(|l| l.push(' '));
     let ops = input.pop().unwrap();
     let (ops, sizes): (Vec<_>, Vec<_>) = ops

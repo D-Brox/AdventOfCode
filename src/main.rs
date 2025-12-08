@@ -1,11 +1,17 @@
 use seq_macro::seq;
-seq!( N in 01..=07 {
+seq!( N in 01..=08 {
 
 use std::fs::File;
 use std::io::{self, BufRead};
 use std::path::{Path, PathBuf};
+use std::time::Instant;
 
 use clap::{Parser, Subcommand, ValueEnum};
+
+mod days {
+    #(pub mod day~N;)*
+}
+use days::*;
 
 fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
 where
@@ -28,11 +34,6 @@ enum Part {
     Part2,
 }
 
-
-mod days {
-    #(pub mod day~N;)*
-}
-
 #[derive(Subcommand)]
 enum Commands {#(
     Day~N{
@@ -43,8 +44,6 @@ enum Commands {#(
     },
 )*}
 
-use days::*;
-
 fn main() {
     let cli = Cli::parse();
         match &cli.command {#(
@@ -53,10 +52,12 @@ fn main() {
                     .unwrap()
                     .map(|l|l.unwrap())
                     .collect();
+                let now = Instant::now();
                 match part{
-                    Part::Part1 => println!("{:?}",day~N::solution1(input)),
-                    Part::Part2 => println!("{:?}",day~N::solution2(input)),
+                    Part::Part1 => print!("{:?} ",day~N::part1(input)),
+                    Part::Part2 => print!("{:?} ",day~N::part2(input)),
                 }
+                println!("(in {:.2?})", now.elapsed());
             },
         )*}
 }
