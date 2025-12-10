@@ -1,7 +1,7 @@
 use itertools::Itertools;
 
 pub fn part1(input: Vec<String>) -> u32 {
-    let mut accesible = 0;
+    let mut accessible = 0;
     let table = input
         .iter()
         .map(|l| l.chars().map(|c| (c == '@') as u8).collect_vec())
@@ -11,7 +11,7 @@ pub fn part1(input: Vec<String>) -> u32 {
     let w = table[0].len();
     for (i, j) in [0, h - 1].into_iter().cartesian_product([0, w - 1]) {
         if table[i][j] == 1 {
-            accesible += 1;
+            accessible += 1;
         }
     }
 
@@ -20,7 +20,7 @@ pub fn part1(input: Vec<String>) -> u32 {
             let neighbors =
                 table[0][j - 1] + table[0][j + 1] + table[1][j - 1] + table[1][j] + table[1][j + 1];
             if neighbors < 4 {
-                accesible += 1;
+                accessible += 1;
             }
         }
         if table[h - 1][j] == 1 {
@@ -30,7 +30,7 @@ pub fn part1(input: Vec<String>) -> u32 {
                 + table[h - 1][j - 1]
                 + table[h - 1][j + 1];
             if neighbors < 4 {
-                accesible += 1;
+                accessible += 1;
             }
         }
     }
@@ -39,7 +39,7 @@ pub fn part1(input: Vec<String>) -> u32 {
             let neighbors =
                 table[i - 1][0] + table[i - 1][1] + table[i][1] + table[i + 1][0] + table[i + 1][1];
             if neighbors < 4 {
-                accesible += 1;
+                accessible += 1;
             }
         }
         if table[i][w - 1] == 1 {
@@ -49,7 +49,7 @@ pub fn part1(input: Vec<String>) -> u32 {
                 + table[i + 1][w - 2]
                 + table[i + 1][w - 1];
             if neighbors < 4 {
-                accesible += 1;
+                accessible += 1;
             }
         }
     }
@@ -65,15 +65,15 @@ pub fn part1(input: Vec<String>) -> u32 {
                 + table[i + 1][j]
                 + table[i + 1][j + 1];
             if neighbors < 4 {
-                accesible += 1;
+                accessible += 1;
             }
         }
     }
-    accesible
+    accessible
 }
 
 pub fn part2(input: Vec<String>) -> u32 {
-    let mut accesible = 0;
+    let mut accessible = 0;
     let mut table = input
         .iter()
         .map(|l| l.chars().map(|c| (c == '@') as u8).collect_vec())
@@ -83,7 +83,7 @@ pub fn part2(input: Vec<String>) -> u32 {
     for (i, j) in [0, h - 1].into_iter().cartesian_product([0, w - 1]) {
         if table[i][j] == 1 {
             table[i][j] = 0;
-            accesible += 1;
+            accessible += 1;
         }
     }
     let mut previous = 0;
@@ -95,14 +95,14 @@ pub fn part2(input: Vec<String>) -> u32 {
         .cartesian_product(1..(w - 1))
         .filter(|&(i, j)| table[i][j] == 1)
         .collect_vec();
-    while previous != accesible {
-        previous = accesible;
+    while previous != accessible {
+        previous = accessible;
         for &j in &top {
             let neighbors =
                 table[0][j - 1] + table[0][j + 1] + table[1][j - 1] + table[1][j] + table[1][j + 1];
             if neighbors < 4 {
                 table[0][j] = 0;
-                accesible += 1;
+                accessible += 1;
             }
         }
         for &j in &bottom {
@@ -113,7 +113,7 @@ pub fn part2(input: Vec<String>) -> u32 {
                 + table[h - 1][j + 1];
             if neighbors < 4 {
                 table[h - 1][j] = 0;
-                accesible += 1;
+                accessible += 1;
             }
         }
         for &i in &left {
@@ -121,7 +121,7 @@ pub fn part2(input: Vec<String>) -> u32 {
                 table[i - 1][0] + table[i - 1][1] + table[i][1] + table[i + 1][0] + table[i + 1][1];
             if neighbors < 4 {
                 table[i][0] = 0;
-                accesible += 1;
+                accessible += 1;
             }
         }
         for &i in &right {
@@ -132,7 +132,7 @@ pub fn part2(input: Vec<String>) -> u32 {
                 + table[i + 1][w - 1];
             if neighbors < 4 {
                 table[i][w - 1] = 0;
-                accesible += 1;
+                accessible += 1;
             }
         }
         for &(i, j) in &center {
@@ -146,7 +146,7 @@ pub fn part2(input: Vec<String>) -> u32 {
                 + table[i + 1][j + 1];
             if neighbors < 4 {
                 table[i][j] = 0;
-                accesible += 1;
+                accessible += 1;
             }
         }
         top.retain(|&j| table[0][j] == 1);
@@ -156,5 +156,5 @@ pub fn part2(input: Vec<String>) -> u32 {
         center.retain(|&(i, j)| table[i][j] == 1);
     }
 
-    accesible
+    accessible
 }

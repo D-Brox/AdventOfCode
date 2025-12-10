@@ -32,7 +32,7 @@ pub fn part2(mut input: Vec<String>) -> u64 {
         .fold(vec![], |mut acc, s| {
             if s.is_empty() {
                 let last: &mut (_, usize) = acc.last_mut().unwrap();
-                last.1 = last.1 + 1;
+                last.1 += 1;
             } else {
                 acc.push((s, 2));
             }

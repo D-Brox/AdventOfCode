@@ -4,11 +4,11 @@ pub fn part1(input: Vec<String>) -> usize {
     let mut splits = 0;
     let mut tachyons = HashSet::new();
     tachyons.insert(input[0].find('S').unwrap());
-    for i in 1..input.len() {
+    for i in input.iter().skip(1) {
         tachyons = tachyons
             .into_iter()
             .flat_map(|t| {
-                if input[i].chars().nth(t).unwrap() == '^' {
+                if i.chars().nth(t).unwrap() == '^' {
                     splits += 1;
                     vec![t - 1, t + 1]
                 } else {

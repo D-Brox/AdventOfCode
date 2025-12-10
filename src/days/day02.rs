@@ -88,7 +88,7 @@ pub fn part2(input: Vec<String>) -> u64 {
             let reps = get_repeaters(i);
             let rep = reps
                 .iter()
-                .filter(|rep| (lower..=upper).contains(&rep))
+                .filter(|rep| (lower..=upper).contains(rep))
                 .collect_vec();
             repeaters.extend(rep);
         }

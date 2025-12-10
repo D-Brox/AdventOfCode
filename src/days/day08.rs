@@ -24,7 +24,7 @@ impl Eq for Edge {}
 
 impl PartialOrd for Edge {
     fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
-        self.weight.partial_cmp(&other.weight)
+        Some(self.cmp(other))
     }
 }
 
@@ -34,10 +34,10 @@ impl Ord for Edge {
     }
 }
 
-pub fn get_graph<'a>(
-    coords: &'a [(i64, i64, i64)],
+pub fn get_graph(
+    coords: &[(i64, i64, i64)],
     limit: Option<usize>,
-) -> UnGraph<&'a (i64, i64, i64), i64> {
+) -> UnGraph<&(i64, i64, i64), i64> {
     let mut graph: UnGraph<&(i64, i64, i64), i64> = UnGraph::new_undirected();
     let nodes = coords
         .iter()

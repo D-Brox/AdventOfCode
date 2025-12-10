@@ -32,14 +32,16 @@ pub fn part2(input: Vec<String>) -> u64 {
     let mut sum = 0;
     for line in input {
         let mut slice_filtered = line[0..12].to_string();
-        let mut start = 0;
+        let mut start;
+        let mut next_start = 0;
         'outer: for c in line[12..line.len()].chars() {
+            start = next_start;
             slice_filtered.push(c);
             for i in start..12 {
                 let left = slice_filtered.chars().nth(i).unwrap();
                 let right = slice_filtered.chars().nth(i + 1).unwrap();
                 if left < right {
-                    start = if i > 0 && slice_filtered.chars().nth(i - 1).unwrap() >= left {
+                    next_start = if i > 0 && slice_filtered.chars().nth(i - 1).unwrap() >= left {
                         i - 1
                     } else {
                         i
@@ -48,7 +50,7 @@ pub fn part2(input: Vec<String>) -> u64 {
                     continue 'outer;
                 }
             }
-            start = 11;
+            next_start = 11;
             slice_filtered.pop();
         }
         sum += slice_filtered[0..12].parse::<u64>().unwrap();
