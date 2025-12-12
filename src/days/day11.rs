@@ -3,7 +3,7 @@ use std::collections::HashMap;
 use itertools::Itertools;
 
 fn search_path<'a>(
-    mut counts: &mut HashMap<&'a str, usize>,
+    counts: &mut HashMap<&'a str, usize>,
     map: &HashMap<&str, Vec<&'a str>>,
     label: &'a str,
 ) -> usize {
@@ -14,7 +14,7 @@ fn search_path<'a>(
         .get(label)
         .map(|l| {
             l.iter()
-                .map(|next| search_path(&mut counts, &map, next))
+                .map(|next| search_path(counts, map, next))
                 .sum::<usize>()
         })
         .unwrap_or_default();
