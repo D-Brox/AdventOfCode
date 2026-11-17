@@ -6,7 +6,7 @@ edition = "2024"
 [dependencies]
 clap = { version = "4.6", features = ["derive"] }
 # graphalgs = "0.2.0"
-# itertools = "0.15.0"
+itertools = "0.15.0"
 # number-theory = "0.0.26"
 # rangetools = "0.1.4"
 # rayon = "1.12.0"
