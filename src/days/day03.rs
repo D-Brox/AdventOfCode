@@ -25,10 +25,10 @@ pub fn part2(input: Vec<String>) -> usize {
     line.chars().enumerate().for_each(|(n, c)| {
         let curr = if n % 2 == 0 { &mut santa } else { &mut robo };
         match c {
-            '>' => (*curr).0 += 1,
-            '<' => (*curr).0 -= 1,
-            '^' => (*curr).1 += 1,
-            'v' => (*curr).1 -= 1,
+            '>' => curr.0 += 1,
+            '<' => curr.0 -= 1,
+            '^' => curr.1 += 1,
+            'v' => curr.1 -= 1,
             _ => unreachable!(),
         }
         set.insert(*curr);
