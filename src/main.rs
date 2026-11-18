@@ -1,5 +1,5 @@
 use seq_macro::seq;
-seq!( N in 01..=13 {
+seq!( N in 01..=14 {
 
 use std::fs::File;
 use std::io::{self, BufRead};
@@ -11,7 +11,7 @@ use clap::{Parser, Subcommand, ValueEnum};
 mod days {
     #(pub mod day~N;)*
 }
-use days::*;
+use days::{#(day~N,)*};
 
 fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
 where
@@ -54,8 +54,8 @@ fn main() {
                     .collect();
                 let now = Instant::now();
                 match part{
-                    Part::Part1 => print!("{:?} ",day~N::part1(input)),
-                    Part::Part2 => print!("{:?} ",day~N::part2(input)),
+                    Part::Part1 => print!("{:?} ",day~N::part1(&input)),
+                    Part::Part2 => print!("{:?} ",day~N::part2(&input)),
                 }
                 println!("(in {:.2?})", now.elapsed());
             },

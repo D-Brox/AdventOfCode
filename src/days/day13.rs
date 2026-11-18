@@ -7,7 +7,7 @@ pub fn parse(input: &[String]) -> (Vec<&str>, HashMap<(&str, &str), i32>) {
         .iter()
         .map(|l| {
             let (name, res) = l.split_once(" would ").unwrap();
-            let (gain, res) = res.split_once(" ").unwrap();
+            let (gain, res) = res.split_once(' ').unwrap();
             let gain = gain == "gain";
             let (val, res) = res
                 .split_once(" happiness units by sitting next to ")
@@ -28,7 +28,7 @@ pub fn parse(input: &[String]) -> (Vec<&str>, HashMap<(&str, &str), i32>) {
     (names, rules)
 }
 
-fn opt(start: &str, names: Vec<&str>, rules: HashMap<(&str, &str), i32>) -> i32 {
+fn opt(start: &str, names: Vec<&str>, rules: &HashMap<(&str, &str), i32>) -> i32 {
     let total = names.len();
     names
         .into_iter()
@@ -47,12 +47,12 @@ fn opt(start: &str, names: Vec<&str>, rules: HashMap<(&str, &str), i32>) -> i32 
         .unwrap()
 }
 
-pub fn part1(input: Vec<String>) -> i32 {
-    let (mut names, rules) = parse(&input);
-    opt(names.pop().unwrap(), names, rules)
+pub fn part1(input: &[String]) -> i32 {
+    let (mut names, rules) = parse(input);
+    opt(names.pop().unwrap(), names, &rules)
 }
 
-pub fn part2(input: Vec<String>) -> i32 {
-    let (names, rules) = parse(&input);
-    opt("", names, rules)
+pub fn part2(input: &[String]) -> i32 {
+    let (names, rules) = parse(input);
+    opt("", names, &rules)
 }

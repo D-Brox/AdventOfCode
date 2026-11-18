@@ -12,7 +12,7 @@ fn is_valid(array: &[u8]) -> bool {
         }
         b
     });
-    pairs.sort();
+    pairs.sort_unstable();
     pairs.dedup();
     triplet && pairs.len() >= 2
 }
@@ -35,19 +35,18 @@ fn next_pass(array: &mut [u8]) -> Vec<u8> {
     }
 }
 
-pub fn part1(input: Vec<String>) -> String {
-    let line = input.into_iter().next().unwrap();
+pub fn part1(input: &[String]) -> String {
+    let line = input.iter().next().unwrap();
     let mut array = line.chars().map(|c| c as u8 - 97).collect_vec();
     array = next_pass(&mut array);
     loop {
         if is_valid(&array) {
             return array.iter_mut().map(|b| (*b + 97) as char).collect();
-        } else {
-            array = next_pass(&mut array);
         }
+        array = next_pass(&mut array);
     }
 }
 
-pub fn part2(input: Vec<String>) -> String {
-    part1(vec![part1(input)])
+pub fn part2(input: &[String]) -> String {
+    part1(&[part1(input)])
 }

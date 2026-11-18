@@ -30,7 +30,7 @@ fn resolve(line: String, rules: &mut HashMap<String, Op>) -> u16 {
     val
 }
 
-fn parse_rules(input: Vec<String>) -> HashMap<String, Op> {
+fn parse_rules(input: &[String]) -> HashMap<String, Op> {
     input
         .iter()
         .map(|l| {
@@ -62,12 +62,12 @@ fn parse_rules(input: Vec<String>) -> HashMap<String, Op> {
         .collect()
 }
 
-pub fn part1(input: Vec<String>) -> u16 {
+pub fn part1(input: &[String]) -> u16 {
     let mut rules = parse_rules(input);
     resolve("a".into(), &mut rules)
 }
 
-pub fn part2(input: Vec<String>) -> u16 {
+pub fn part2(input: &[String]) -> u16 {
     let mut rules = parse_rules(input);
     let b = resolve("a".into(), &mut rules.clone());
     rules.insert("b".into(), Op::Val(b));

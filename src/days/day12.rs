@@ -1,8 +1,8 @@
 use itertools::Itertools;
 
-pub fn part1(input: Vec<String>) -> i32 {
+pub fn part1(input: &[String]) -> i32 {
     input
-        .into_iter()
+        .iter()
         .next()
         .map(|l| {
             l.split(['{', '}', '[', ']', ',', ':'])
@@ -12,11 +12,11 @@ pub fn part1(input: Vec<String>) -> i32 {
         .unwrap()
 }
 
-pub fn part2(input: Vec<String>) -> i32 {
-    let mut line = input.into_iter().next().unwrap();
+pub fn part2(input: &[String]) -> i32 {
+    let mut line = input.iter().next().unwrap().to_owned();
     while let Some((left, right)) = line.split_once(r#":"red""#) {
         let mut open = 0;
-        let idxl = left
+        let l = left
             .chars()
             .collect_vec()
             .iter()
@@ -35,7 +35,7 @@ pub fn part2(input: Vec<String>) -> i32 {
             })
             .unwrap();
         open = 0;
-        let idxr = right
+        let r = right
             .chars()
             .collect_vec()
             .iter()
@@ -53,7 +53,7 @@ pub fn part2(input: Vec<String>) -> i32 {
                 }
             })
             .unwrap();
-        line = String::new() + &left[..idxl + 1] + &right[idxr..];
+        line = String::new() + &left[..=l] + &right[r..];
     }
-    part1(vec![line])
+    part1(&[line])
 }

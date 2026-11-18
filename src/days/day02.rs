@@ -1,11 +1,11 @@
 use itertools::Itertools;
 
-pub fn part1(input: Vec<String>) -> u32 {
+pub fn part1(input: &[String]) -> u32 {
     input
         .iter()
         .map(|l| {
             let sizes = l
-                .split("x")
+                .split('x')
                 .map(|s| s.parse::<u32>().unwrap())
                 .combinations(2)
                 .map(|v| {
@@ -19,12 +19,12 @@ pub fn part1(input: Vec<String>) -> u32 {
         .sum()
 }
 
-pub fn part2(input: Vec<String>) -> u32 {
+pub fn part2(input: &[String]) -> u32 {
     input
         .iter()
         .map(|l| {
             let sizes = l
-                .split("x")
+                .split('x')
                 .map(|s| s.parse::<u32>().unwrap())
                 .sorted()
                 .collect_vec();

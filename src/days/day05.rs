@@ -4,11 +4,7 @@ const VOWELS: [char; 5] = ['a', 'e', 'i', 'o', 'u'];
 const NAUGHTY: [(char, char); 4] = [('a', 'b'), ('c', 'd'), ('p', 'q'), ('x', 'y')];
 
 fn is_nice1(s: &str) -> bool {
-    let mut vowels = if matches!(s.chars().next(), Some(x) if VOWELS.contains(&x)) {
-        1
-    } else {
-        0
-    };
+    let mut vowels = i32::from(matches!(s.chars().next(), Some(x) if VOWELS.contains(&x)));
     let mut repeat = false;
     let mut naughty = false;
     s.chars().tuple_windows().for_each(|(a, b)| {
@@ -21,8 +17,8 @@ fn is_nice1(s: &str) -> bool {
     !naughty && vowels >= 3 && repeat
 }
 
-pub fn part1(input: Vec<String>) -> usize {
-    input.into_iter().filter(|s| is_nice1(s)).count()
+pub fn part1(input: &[String]) -> usize {
+    input.iter().filter(|s| is_nice1(s)).count()
 }
 
 fn is_nice2(s: &str) -> bool {
@@ -39,6 +35,6 @@ fn is_nice2(s: &str) -> bool {
     pair && repeat
 }
 
-pub fn part2(input: Vec<String>) -> usize {
-    input.into_iter().filter(|s| is_nice2(s)).count()
+pub fn part2(input: &[String]) -> usize {
+    input.iter().filter(|s| is_nice2(s)).count()
 }

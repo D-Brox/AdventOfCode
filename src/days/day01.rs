@@ -1,4 +1,4 @@
-pub fn part1(input: Vec<String>) -> u32 {
+pub fn part1(input: &[String]) -> u32 {
     let line = input.first().unwrap();
     line.chars().fold(0, |acc, c| match c {
         '(' => acc + 1,
@@ -7,7 +7,7 @@ pub fn part1(input: Vec<String>) -> u32 {
     })
 }
 
-pub fn part2(input: Vec<String>) -> usize {
+pub fn part2(input: &[String]) -> usize {
     let line = input.first().unwrap();
     line.chars()
         .enumerate()

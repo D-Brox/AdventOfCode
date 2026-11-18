@@ -1,21 +1,21 @@
-pub fn part1(input: Vec<String>) -> usize {
-    let code: usize = input.iter().map(|l| l.len()).sum();
+pub fn part1(input: &[String]) -> usize {
+    let code: usize = input.iter().map(String::len).sum();
     let esc: usize = input
         .iter()
         .map(|l| {
             l.chars()
-                .fold((0, "".to_string()), |(acc, prev), c| match c {
-                    '\\' if prev == "\\" => (acc + 1, "".into()),
+                .fold((0, String::new()), |(acc, prev), c| match c {
+                    '\\' if prev == "\\" => (acc + 1, String::new()),
                     '\\' => (acc, "\\".into()),
                     'x' if prev == "\\" => (acc, "\\x".into()),
                     'a'..='z' | '0'..='9' if prev.starts_with("\\x") => {
                         if prev.len() == 3 {
-                            (acc + 1, "".into())
+                            (acc + 1, String::new())
                         } else {
                             (acc, format!("{}{c}", prev.clone()))
                         }
                     }
-                    _ => (acc + 1, "".into()),
+                    _ => (acc + 1, String::new()),
                 })
                 .0
                 - 2
@@ -24,14 +24,13 @@ pub fn part1(input: Vec<String>) -> usize {
     code - esc
 }
 
-pub fn part2(input: Vec<String>) -> usize {
-    let code: usize = input.iter().map(|l| l.len()).sum();
+pub fn part2(input: &[String]) -> usize {
+    let code: usize = input.iter().map(String::len).sum();
     let esc: usize = input
         .iter()
         .map(|l| {
             l.chars().fold(0, |acc, c| match c {
-                '\\' => acc + 2,
-                '"' => acc + 2,
+                '\\' | '"' => acc + 2,
                 _ => acc + 1,
             }) + 2
         })

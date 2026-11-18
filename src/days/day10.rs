@@ -18,14 +18,14 @@ fn look_n_say(line: &str) -> String {
         .join("")
 }
 
-pub fn part1(input: Vec<String>) -> usize {
-    let mut line = input.into_iter().next().unwrap();
+pub fn part1(input: &[String]) -> usize {
+    let mut line = input.iter().next().unwrap().to_owned();
     (0..40).for_each(|_| line = look_n_say(&line));
     line.len()
 }
 
-pub fn part2(input: Vec<String>) -> usize {
-    let mut line = input.into_iter().next().unwrap();
+pub fn part2(input: &[String]) -> usize {
+    let mut line = input.iter().next().unwrap().to_owned();
     (0..50).for_each(|_| line = look_n_say(&line));
     line.len()
 }

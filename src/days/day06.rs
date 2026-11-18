@@ -14,7 +14,7 @@ fn split_pair(s: &str) -> (usize, usize) {
         .unwrap()
 }
 
-pub fn part1(input: Vec<String>) -> usize {
+pub fn part1(input: &[String]) -> usize {
     let lines = input
         .iter()
         .map(|l| {
@@ -33,7 +33,7 @@ pub fn part1(input: Vec<String>) -> usize {
         })
         .collect_vec();
 
-    let mut lights = [[false; 1000]; 1000];
+    let mut lights = vec![[false; 1000]; 1000].into_boxed_slice();
 
     for (i, (s1, s2), (e1, e2)) in lines {
         let light = (s1..=e1).cartesian_product(s2..=e2);
@@ -47,7 +47,7 @@ pub fn part1(input: Vec<String>) -> usize {
     lights.concat().into_iter().filter(|&a| a).count()
 }
 
-pub fn part2(input: Vec<String>) -> u32 {
+pub fn part2(input: &[String]) -> u32 {
     let lines = input
         .iter()
         .map(|l| {
@@ -66,18 +66,18 @@ pub fn part2(input: Vec<String>) -> u32 {
         })
         .collect_vec();
 
-    let mut lights = [[0u32; 1000]; 1000];
+    let mut lights = vec![[0u8; 1000]; 1000].into_boxed_slice();
 
     for (i, (s1, s2), (e1, e2)) in lines {
         let light = (s1..=e1).cartesian_product(s2..=e2);
         match i {
             Instruction::On => light.for_each(|(i, j)| lights[i][j] += 1),
             Instruction::Off => {
-                light.for_each(|(i, j)| lights[i][j] = lights[i][j].saturating_sub(1))
+                light.for_each(|(i, j)| lights[i][j] = lights[i][j].saturating_sub(1));
             }
             Instruction::Toggle => light.for_each(|(i, j)| lights[i][j] += 2),
         }
     }
 
-    lights.concat().into_iter().sum()
+    lights.concat().into_iter().map(u32::from).sum()
 }

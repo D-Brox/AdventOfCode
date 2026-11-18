@@ -2,7 +2,7 @@ use std::collections::{HashMap, HashSet};
 
 use itertools::Itertools;
 
-pub fn part1(input: Vec<String>) -> u32 {
+pub fn part1(input: &[String]) -> u32 {
     let mut places = HashSet::new();
     let paths = input
         .iter()
@@ -38,7 +38,7 @@ pub fn part1(input: Vec<String>) -> u32 {
     len
 }
 
-pub fn part2(input: Vec<String>) -> u32 {
+pub fn part2(input: &[String]) -> u32 {
     let mut places = HashSet::new();
     let paths = input
         .iter()
