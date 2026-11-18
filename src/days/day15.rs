@@ -35,9 +35,8 @@ pub fn part1(input: &[String]) -> i32 {
                     .any(i32::is_negative)
                 {
                     continue;
-                } else {
-                    max = max.max(capacity * durability * flavor * texture);
                 }
+                max = max.max(capacity * durability * flavor * texture);
             }
         }
     }
@@ -64,9 +63,8 @@ pub fn part2(input: &[String]) -> i32 {
                     .any(i32::is_negative)
                 {
                     continue;
-                } else {
-                    max = max.max(capacity * durability * flavor * texture);
                 }
+                max = max.max(capacity * durability * flavor * texture);
             }
         }
     }

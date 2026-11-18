@@ -2,7 +2,7 @@ use std::{collections::HashMap, sync::LazyLock};
 
 use itertools::Itertools;
 
-const TAPE: LazyLock<HashMap<&str, i32>> = LazyLock::new(|| {
+static TAPE: LazyLock<HashMap<&str, i32>> = LazyLock::new(|| {
     HashMap::from_iter([
         ("children", 3),
         ("cats", 7),
@@ -35,7 +35,7 @@ pub fn part1(input: &[String]) -> u16 {
             return sue[4..].parse::<u16>().unwrap();
         }
     }
-    todo!()
+    unreachable!()
 }
 
 pub fn part2(input: &[String]) -> u16 {
@@ -61,5 +61,5 @@ pub fn part2(input: &[String]) -> u16 {
             return sue[4..].parse::<u16>().unwrap();
         }
     }
-    todo!()
+    unreachable!()
 }
