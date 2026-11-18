@@ -35,13 +35,12 @@ fn opt(start: &str, names: Vec<&str>, rules: &HashMap<(&str, &str), i32>) -> i32
         .permutations(total)
         .map(|mut order| {
             order.push(start);
-            let first = *order.first().unwrap();
-            order.iter().tuple_windows().fold(
-                rules.get(&(start, first)).unwrap_or(&0) + rules.get(&(first, start)).unwrap_or(&0),
-                |acc, (&l, &r)| {
+            order
+                .iter()
+                .circular_tuple_windows()
+                .fold(0, |acc, (&l, &r)| {
                     acc + rules.get(&(l, r)).unwrap_or(&0) + rules.get(&(r, l)).unwrap_or(&0)
-                },
-            )
+                })
         })
         .max()
         .unwrap()
