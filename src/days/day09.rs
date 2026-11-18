@@ -28,7 +28,7 @@ pub fn part1(input: Vec<String>) -> u32 {
         let start = *path[0];
         len = len.min(
             path[1..]
-                .into_iter()
+                .iter()
                 .fold((0, start), |(acc, prev), &&curr| {
                     (acc + paths[&(prev, curr)], curr)
                 })
@@ -64,7 +64,7 @@ pub fn part2(input: Vec<String>) -> u32 {
         let start = *path[0];
         len = len.max(
             path[1..]
-                .into_iter()
+                .iter()
                 .fold((0, start), |(acc, prev), &&curr| {
                     (acc + paths[&(prev, curr)], curr)
                 })
