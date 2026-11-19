@@ -7,8 +7,9 @@ fn parse(input: &[String]) -> Vec<Vec<bool>> {
         .collect_vec()
 }
 
-fn step(lights: &mut Vec<Vec<bool>>, stuck: bool) {
+fn step(lights: &mut [Vec<bool>], stuck: bool) {
     let mut neighbors = vec![vec![0u8; 100]; 100];
+    #[allow(clippy::cast_sign_loss, clippy::cast_possible_truncation)]
     (0..100).cartesian_product(0..100).for_each(|(i, j)| {
         let n = [-1, 0, 1]
             .into_iter()
@@ -29,7 +30,7 @@ fn step(lights: &mut Vec<Vec<bool>>, stuck: bool) {
             lights[i][j] = neighbors[i][j] == 3;
         }
         if stuck && [0, 99].contains(&i) && [0, 99].contains(&j) {
-            lights[i][j] = true
+            lights[i][j] = true;
         }
     });
 }

@@ -1,5 +1,5 @@
 use seq_macro::seq;
-seq!( N in 01..=18 {
+seq!( N in 01..=19 {
 
 use std::fs::File;
 use std::io::{self, BufRead};
@@ -48,14 +48,15 @@ fn main() {
     let cli = Cli::parse();
         match &cli.command {#(
             Commands::Day~N{part,input} => {
-                let input:Vec<String> = read_lines(input)
+                let mut input:Vec<String> = read_lines(input)
                     .unwrap()
                     .map(|l|l.unwrap())
                     .collect();
                 let now = Instant::now();
+                #[allow(clippy::unnecessary_mut_passed)]
                 match part{
-                    Part::Part1 => print!("{:?} ",day~N::part1(&input)),
-                    Part::Part2 => print!("{:?} ",day~N::part2(&input)),
+                    Part::Part1 => print!("{:?} ",day~N::part1(&mut input)),
+                    Part::Part2 => print!("{:?} ",day~N::part2(&mut input)),
                 }
                 println!("(in {:.2?})", now.elapsed());
             },
