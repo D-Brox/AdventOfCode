@@ -10,20 +10,20 @@ check: spellcheck clippy
 
 # Remove generated artifacts
 clean:
-    @cargo clean
+    @cargo +nightly clean
     @echo Done!
 
 # Build the project
 build:
-    @cargo build --release
+    @cargo +nightly build --release
     @echo Project successfully built!
 
 run +ARGS="":
-    @cargo run --release -- {{ ARGS }}
+    @cargo +nightly run --release -- {{ ARGS }}
 
 # Lint the codebase
 clippy +ARGS="":
-    @cargo clippy --all-targets --all-features --workspace -- --deny warnings {{ ARGS }}
+    @cargo +nightly clippy --all-targets --all-features --workspace -- --deny warnings {{ ARGS }}
     @echo Lint successful!
 
 # Format the codebase

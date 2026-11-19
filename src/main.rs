@@ -1,5 +1,6 @@
+#![feature(int_roundings)]
 use seq_macro::seq;
-seq!( N in 01..=20 {
+seq!( N in 01..=21 {
 
 use std::fs::File;
 use std::io::{self, BufRead};
