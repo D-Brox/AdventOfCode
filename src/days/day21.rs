@@ -28,7 +28,7 @@ const RINGS: [(&str, i32, i32, i32); 6] = [
 pub fn part1(input: &[String]) -> i32 {
     let (b_hp, b_atk, b_def) = input
         .iter()
-        .map(|l| l.rsplit_once(" ").unwrap().1.parse::<i32>().unwrap())
+        .map(|l| l.rsplit_once(' ').unwrap().1.parse::<i32>().unwrap())
         .collect_tuple()
         .unwrap();
 
@@ -40,15 +40,15 @@ pub fn part1(input: &[String]) -> i32 {
             let mut p_atk = w.2 - b_def;
             let mut b_atk = b_atk;
             let mut cost = w.1;
-            a.iter().for_each(|a| {
+            for a in &a {
                 cost += a.1;
                 b_atk -= a.2;
-            });
-            r.iter().for_each(|r| {
+            }
+            for r in &r {
                 cost += r.1;
                 p_atk += r.2;
                 b_atk -= r.3;
-            });
+            }
 
             p_atk = p_atk.max(1);
             b_atk = b_atk.max(1);
@@ -67,7 +67,7 @@ pub fn part1(input: &[String]) -> i32 {
 pub fn part2(input: &[String]) -> i32 {
     let (b_hp, b_atk, b_def) = input
         .iter()
-        .map(|l| l.rsplit_once(" ").unwrap().1.parse::<i32>().unwrap())
+        .map(|l| l.rsplit_once(' ').unwrap().1.parse::<i32>().unwrap())
         .collect_tuple()
         .unwrap();
 
@@ -79,15 +79,15 @@ pub fn part2(input: &[String]) -> i32 {
             let mut p_atk = w.2 - b_def;
             let mut b_atk = b_atk;
             let mut cost = w.1;
-            a.iter().for_each(|a| {
+            for a in &a {
                 cost += a.1;
                 b_atk -= a.2;
-            });
-            r.iter().for_each(|r| {
+            }
+            for r in &r {
                 cost += r.1;
                 p_atk += r.2;
                 b_atk -= r.3;
-            });
+            }
 
             p_atk = p_atk.max(1);
             b_atk = b_atk.max(1);
